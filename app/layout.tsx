@@ -13,17 +13,18 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-    title: "Basic Breakdown",
+  metadataBase: new URL("https://www.basicbreakdown.com"),
+  title: "Basic Breakdown",
   description: "News, simplified.",
   openGraph: {
     type: "website",
-    url: "https://basicbreakdown.com",
+    url: "/",
+    siteName: "Basic Breakdown",
     title: "Basic Breakdown",
-    description:
-      "News, simplified.",
+    description: "News, simplified.",
     images: [
       {
-        url: "https://basicbreakdown.com/basic-breakdown-og.png",
+        url: "/basic-breakdown-og.png", // <-- relative path in /public
         width: 1200,
         height: 630,
         alt: "Basic Breakdown — clean news explainer layout",
@@ -33,12 +34,10 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     title: "Basic Breakdown — News that actually makes sense",
-    description:
-      "News, simplified.",
-    images: ["https://basicbreakdown.com/basic-breakdown-og.png"],
+    description: "News, simplified.",
+    images: ["/basic-breakdown-og.png"], // <-- relative too
   },
 };
-
 
 export default function RootLayout({
   children,
