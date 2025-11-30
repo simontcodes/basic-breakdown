@@ -1,6 +1,6 @@
 // app/page.tsx
 import Link from "next/link";
-import Image from "next/image";
+// import Image from "next/image";
 import { getAllPosts, type Post } from "@/lib/posts";
 
 export default function HomePage() {
@@ -15,14 +15,14 @@ export default function HomePage() {
         <div className="mx-auto max-w-5xl px-4">
           <div className="flex items-center justify-between gap-2 py-4">
             <div className="flex items-center gap-2 leading-tight">
-              <Image
+              {/* <Image
                 src="/logo.svg"
                 alt="Basic Breakdown logo"
                 width={48} // layout box ~48x25ish
                 height={25}
                 className="object-contain scale-500 origin-left mr-25" // visually zoom logo, nav height stays small
                 priority
-              />
+              /> */}
               <div>
                 <span className="text-base font-semibold tracking-tight">
                   Basic Breakdown
