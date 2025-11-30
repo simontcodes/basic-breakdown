@@ -13,9 +13,32 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Basic Breakdown",
+    title: "Basic Breakdown",
   description: "News, simplified.",
+  openGraph: {
+    type: "website",
+    url: "https://basicbreakdown.com",
+    title: "Basic Breakdown",
+    description:
+      "News, simplified.",
+    images: [
+      {
+        url: "https://basicbreakdown.com/basic-breakdown-og.png",
+        width: 1200,
+        height: 630,
+        alt: "Basic Breakdown — clean news explainer layout",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Basic Breakdown — News that actually makes sense",
+    description:
+      "News, simplified.",
+    images: ["https://basicbreakdown.com/basic-breakdown-og.png"],
+  },
 };
+
 
 export default function RootLayout({
   children,
