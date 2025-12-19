@@ -1,6 +1,5 @@
 // app/page.tsx
 import Link from "next/link";
-// import Image from "next/image";
 import { getAllPosts, type Post } from "@/lib/posts";
 
 export default function HomePage() {
@@ -9,331 +8,119 @@ export default function HomePage() {
   const recent = posts.slice(1);
 
   return (
-    <div className="min-h-screen bg-slate-950 text-slate-50">
-      {/* Header */}
-      <header className="sticky top-0 z-30 border-b border-slate-800 bg-slate-950/90 backdrop-blur">
-        <div className="mx-auto max-w-5xl px-4">
-          <div className="flex items-center justify-between gap-2 py-4">
-            <div className="flex items-center gap-2 leading-tight">
-              {/* <Image
-                src="/logo.svg"
-                alt="Basic Breakdown logo"
-                width={48} // layout box ~48x25ish
-                height={25}
-                className="object-contain scale-500 origin-left mr-25" // visually zoom logo, nav height stays small
-                priority
-              /> */}
-              <div>
-                <span className="text-base font-semibold tracking-tight">
-                  Basic Breakdown
-                </span>
-                <span className="ml-2 text-[11px] text-slate-400">
-                  News, simplified.
-                </span>
-              </div>
+    <div className="min-h-screen bg-zinc-100 text-zinc-900">
+      {/* Frame border to mimic mockup */}
+      <div className="mx-auto min-h-screen max-w-5xl border-x border-zinc-300 bg-zinc-50 shadow-md">
+        {/* Header */}
+        <header className="flex items-center justify-between px-4 py-5 sm:px-8">
+          <div className="leading-tight">
+            <div className="text-2xl  font-bold tracking-[0.25em] text-zinc-900">
+              BASIC
             </div>
-
-            {/* Mobile CTA */}
-            <button className="rounded-full bg-emerald-500 px-3 py-1.5 text-xs font-medium text-slate-950 hover:bg-emerald-400 md:hidden">
-              Get newsletter
-            </button>
-
-            {/* Desktop nav */}
-            <nav className="hidden items-center gap-6 text-sm text-slate-300 md:flex">
-              <a href="#latest" className="hover:text-slate-50">
-                Latest
-              </a>
-              <a href="#topics" className="hover:text-slate-50">
-                Topics
-              </a>
-              <a href="#how-it-works" className="hover:text-slate-50">
-                How it works
-              </a>
-              <a href="#about" className="hover:text-slate-50">
-                About
-              </a>
-              <button className="rounded-full border border-slate-600 px-4 py-1.5 text-sm font-medium hover:border-slate-200 hover:text-slate-50">
-                Get the newsletter
-              </button>
-            </nav>
+            <div className=" text-2xl font-bold tracking-[0.25em] text-zinc-900">
+              BREAKDOWN
+            </div>
           </div>
-        </div>
-      </header>
 
-      <main className="mx-auto max-w-5xl px-4 pb-16 pt-6">
-        {/* Hero + Featured */}
-        <section className="space-y-6 md:grid md:grid-cols-[minmax(0,1.2fr)_minmax(0,1fr)] md:items-center md:space-y-0 md:gap-10">
-          {/* Hero copy */}
-          <div>
-            <p className="text-[11px] font-medium uppercase tracking-[0.2em] text-emerald-400">
-              Daily newsletter
-            </p>
-            <h1 className="mt-2 text-2xl font-semibold tracking-tight sm:text-3xl">
-              Understand the news in{" "}
-              <span className="text-emerald-400">3 minutes</span>.
+          <nav className="flex items-center gap-6 text-xs font-medium tracking-[0.18em] text-zinc-700">
+            <Link href="#archive" className="hover:text-zinc-900">
+              ARCHIVE
+            </Link>
+            <Link href="#about" className="hover:text-zinc-900">
+              ABOUT
+            </Link>
+          </nav>
+        </header>
+
+        <main className="px-4 pb-16 pt-4 sm:px-8 sm:pb-20">
+          {/* Hero */}
+          <section className="flex flex-col items-center text-center">
+            <h1 className="max-w-3xl text-3xl font-semibold leading-tight tracking-tight text-zinc-900 sm:text-4xl md:text-5xl">
+              NEWS, SIMPLIFIED.
             </h1>
-            <p className="mt-3 text-sm text-slate-300">
-              Basic Breakdown turns complex headlines into simple, clear
-              explanations — so you can stay informed without drowning in tabs
-              and jargon.
-            </p>
 
-            <form className="mt-5 flex flex-col gap-3 sm:flex-row">
-              <input
-                type="email"
-                required
-                placeholder="you@example.com"
-                className="w-full rounded-full border border-slate-700 bg-slate-900 px-4 py-2.5 text-sm outline-none placeholder:text-slate-500 focus:border-emerald-400"
-              />
+            <form className="mt-8 flex w-full max-w-xl flex-col gap-3 sm:flex-row sm:items-center">
+              <div className="flex-1 rounded-full border border-zinc-400 bg-white px-4 py-2.5 text-left text-sm text-zinc-700 shadow-sm">
+                <input
+                  type="email"
+                  required
+                  placeholder="Enter your email address"
+                  className="w-full bg-transparent text-sm text-zinc-900 placeholder:text-zinc-400 focus:outline-none"
+                />
+              </div>
               <button
                 type="submit"
-                className="w-full rounded-full bg-emerald-500 px-4 py-2.5 text-sm font-medium text-slate-950 hover:bg-emerald-400 sm:w-auto"
+                className="inline-flex items-center justify-center rounded-full bg-lime-400 px-6 py-2.5 text-sm font-semibold uppercase tracking-[0.18em] text-zinc-900 shadow-sm transition hover:bg-lime-300"
               >
-                Get today&apos;s breakdown
+                SUBSCRIBE
               </button>
             </form>
 
-            <p className="mt-2 text-[11px] text-slate-500">
-              1–2 emails per week. No spam, no doomscrolling.
+            <p className="mt-3 text-xs text-zinc-500">
+              One short breakdown at a time. No doomscrolling required.
             </p>
-          </div>
+          </section>
 
-          {/* Featured / Today’s breakdown preview */}
-          {featured && (
-            <article className="rounded-2xl border border-slate-800 bg-slate-900/40 p-4 shadow-lg shadow-slate-950/40">
-              <div className="flex items-center justify-between text-[11px] text-slate-400">
-                <span className="rounded-full bg-emerald-500/10 px-2 py-0.5 font-medium text-emerald-300">
-                  {featured.topic.charAt(0).toUpperCase() +
-                    featured.topic.slice(1)}
-                  {" · "}
-                  {featured.minutes} min read
-                </span>
-                <span>
-                  {new Date(featured.date).toLocaleDateString("en-US", {
-                    month: "short",
-                    day: "numeric",
-                  })}
-                </span>
-              </div>
-
-              <h2 className="mt-3 text-base font-semibold text-slate-50">
-                {featured.title}
-              </h2>
-
-              <p className="mt-2 text-sm text-slate-300">{featured.summary}</p>
-
-              <ul className="mt-3 space-y-1 text-sm text-slate-300">
-                {featured.bullets.map((bullet: string) => (
-                  <li key={bullet}>• {bullet}</li>
-                ))}
-              </ul>
-
-              <Link
-                href={`/posts/${featured.slug}`}
-                className="mt-4 inline-block text-sm font-medium text-emerald-400 hover:text-emerald-300"
-              >
-                Read today&apos;s breakdown →
-              </Link>
-            </article>
-          )}
-        </section>
-
-        {/* Latest breakdowns */}
-        <section id="latest" className="mt-10">
-          <div className="flex items-center justify-between gap-3">
-            <h2 className="text-base font-semibold text-slate-50">
-              Recent breakdowns
+          {/* Latest breakdowns */}
+          <section id="archive" className="mt-12 sm:mt-16">
+            <h2 className="text-xs font-semibold tracking-[0.22em] text-zinc-700">
+              LATEST BREAKDOWNS
             </h2>
-          </div>
 
-          {/* Filter chips row (static for now) */}
-          <div className="-mx-4 mt-3 overflow-x-auto">
-            <div className="flex gap-2 px-4 pb-1 text-[11px] text-slate-300">
-              <button className="whitespace-nowrap rounded-full border border-slate-700 px-3 py-1 font-medium text-slate-100">
-                All
-              </button>
-              <button className="whitespace-nowrap rounded-full border border-slate-800 px-3 py-1">
-                World
-              </button>
-              <button className="whitespace-nowrap rounded-full border border-slate-800 px-3 py-1">
-                Tech
-              </button>
-              <button className="whitespace-nowrap rounded-full border border-slate-800 px-3 py-1">
-                Money
-              </button>
-            </div>
-          </div>
-
-          <div className="mt-4 grid gap-4 md:grid-cols-2">
-            {recent.map((post: Post) => (
-              <article
-                key={post.slug}
-                className="rounded-2xl border border-slate-800 bg-slate-900/40 p-4"
-              >
-                <div className="flex items-center justify-between text-[11px] text-slate-400">
-                  <span className="rounded-full bg-slate-800 px-2 py-0.5">
-                    {post.topic.charAt(0).toUpperCase() + post.topic.slice(1)}
-                    {" · "}
-                    {post.minutes} min read
-                  </span>
-                  <span>
+            {/* Grid of cards */}
+            <div className="mt-4 grid gap-4 sm:grid-cols-2 md:grid-cols-3">
+              {posts.map((post: Post) => (
+                <article
+                  key={post.slug}
+                  className="flex h-full flex-col rounded-2xl bg-white p-4 text-left shadow-sm ring-1 ring-zinc-200"
+                >
+                  <div className="text-[10px] font-semibold uppercase tracking-[0.2em] text-zinc-500">
+                    {post.topic.toUpperCase()} ·{" "}
                     {new Date(post.date).toLocaleDateString("en-US", {
                       month: "short",
                       day: "numeric",
                     })}
-                  </span>
-                </div>
-                <h3 className="mt-2 text-sm font-semibold text-slate-50">
-                  {post.title}
-                </h3>
-                <p className="mt-1 text-xs text-slate-300">{post.summary}</p>
-                <Link
-                  href={`/posts/${post.slug}`}
-                  className="mt-3 inline-block text-xs font-medium text-emerald-400 hover:text-emerald-300"
-                >
-                  Read breakdown →
-                </Link>
-              </article>
-            ))}
-          </div>
-        </section>
+                  </div>
 
-        {/* How it works */}
-        <section
-          id="how-it-works"
-          className="mt-12 border-t border-slate-900 pt-7"
-        >
-          <h2 className="text-base font-semibold text-slate-50">
-            How Basic Breakdown works
-          </h2>
+                  <Link href={`/posts/${post.slug}`}>
+                    <h3 className="mt-3 text-lg font-semibold text-zinc-900">
+                      {post.title}
+                    </h3>
+                  </Link>
 
-          <div className="mt-4 grid gap-5 md:grid-cols-3">
-            <div className="space-y-2 text-sm text-slate-300">
-              <p className="text-[11px] font-semibold uppercase tracking-[0.2em] text-slate-400">
-                01
-              </p>
-              <p className="font-medium text-slate-50">We pick the headline</p>
-              <p>
-                We track major stories and pick the ones that actually change
-                something — not just clickbait.
-              </p>
-            </div>
-            <div className="space-y-2 text-sm text-slate-300">
-              <p className="text-[11px] font-semibold uppercase tracking-[0.2em] text-slate-400">
-                02
-              </p>
-              <p className="font-medium text-slate-50">We break it down</p>
-              <p>
-                We strip away jargon and spin, focusing on what happened,
-                who&apos;s involved, and the real context.
-              </p>
-            </div>
-            <div className="space-y-2 text-sm text-slate-300">
-              <p className="text-[11px] font-semibold uppercase tracking-[0.2em] text-slate-400">
-                03
-              </p>
-              <p className="font-medium text-slate-50">
-                You get the bottom line
-              </p>
-              <p>
-                You walk away with a clear, 3-minute understanding — plus what
-                to watch next.
-              </p>
-            </div>
-          </div>
-        </section>
+                  <p className="mt-2 line-clamp-3 text-xs text-zinc-600">
+                    {post.summary}
+                  </p>
 
-        {/* Newsletter emphasis */}
-        <section
-          id="about"
-          className="mt-12 rounded-2xl border border-slate-800 bg-slate-900/40 p-5"
-        >
-          <div className="grid gap-6 md:grid-cols-2 md:items-center">
-            <div>
-              <h2 className="text-base font-semibold text-slate-50">
-                Turn skimming into real understanding.
-              </h2>
-              <p className="mt-2 text-sm text-slate-300">
-                Basic Breakdown is for people who care about what&apos;s
-                happening in the world — but don&apos;t have time to read 10
-                different articles every day.
-              </p>
-              <p className="mt-2 text-sm text-slate-300">
-                We do the heavy lifting, you get the signal — without the noise.
-              </p>
+                  <div className="mt-3 flex items-center justify-between text-[11px] text-zinc-500">
+                    <span>{post.minutes} min read</span>
+                    <Link
+                      href={`/posts/${post.slug}`}
+                      className="inline-flex items-center gap-1 text-[11px] font-medium text-zinc-900"
+                    >
+                      Read
+                      <span aria-hidden="true">→</span>
+                    </Link>
+                  </div>
+                </article>
+              ))}
             </div>
+          </section>
 
-            <div>
-              <form className="space-y-3">
-                <label className="block text-[11px] font-medium uppercase tracking-[0.2em] text-slate-400">
-                  Join the newsletter
-                </label>
-                <input
-                  type="email"
-                  required
-                  placeholder="you@example.com"
-                  className="w-full rounded-full border border-slate-700 bg-slate-950 px-4 py-2.5 text-sm outline-none placeholder:text-slate-500 focus:border-emerald-400"
-                />
-                <button
-                  type="submit"
-                  className="w-full rounded-full bg-emerald-500 px-4 py-2.5 text-sm font-medium text-slate-950 hover:bg-emerald-400"
-                >
-                  Join free
-                </button>
-                <p className="text-[11px] text-slate-500">
-                  Unsubscribe anytime. No tracking-heavy ads or weird sponsors.
-                </p>
-              </form>
-            </div>
-          </div>
-        </section>
-      </main>
-
-      {/* Footer */}
-      <footer className="border-t border-slate-900 bg-slate-950">
-        <div className="mx-auto flex max-w-5xl flex-col gap-6 px-4 py-8 text-xs text-slate-400 md:flex-row md:items-start md:justify-between">
-          <div>
-            <p className="text-sm font-semibold text-slate-50">
-              Basic Breakdown
+          {/* About blurb at bottom */}
+          <section
+            id="about"
+            className="mt-16 border-t border-zinc-200 pt-6 text-left text-sm text-zinc-700"
+          >
+            <p className="max-w-2xl">
+              Basic Breakdown is a short-form newsletter that explains one
+              important story at a time—what happened, why it matters, and what
+              to watch next. Clean, context-rich, and designed to fit into your
+              day without taking it over.
             </p>
-            <p className="mt-1 max-w-sm">
-              Simple, context-rich explanations of the stories that matter — in
-              minutes, not hours.
-            </p>
-          </div>
-
-          <div className="flex gap-8">
-            <div className="space-y-1">
-              <p className="font-medium text-slate-300">Product</p>
-              <a className="block hover:text-slate-200" href="#latest">
-                Latest
-              </a>
-              <a className="block hover:text-slate-200" href="#topics">
-                Topics
-              </a>
-              <a className="block hover:text-slate-200" href="#latest">
-                Archive
-              </a>
-            </div>
-            <div className="space-y-1">
-              <p className="font-medium text-slate-300">Company</p>
-              <a className="block hover:text-slate-200" href="#about">
-                About
-              </a>
-              <a className="block hover:text-slate-200" href="#">
-                Contact
-              </a>
-              <a className="block hover:text-slate-200" href="#">
-                FAQ
-              </a>
-            </div>
-          </div>
-        </div>
-
-        <div className="border-t border-slate-900 py-4 text-center text-[11px] text-slate-500">
-          © {new Date().getFullYear()} Basic Breakdown. All rights reserved.
-        </div>
-      </footer>
+          </section>
+        </main>
+      </div>
     </div>
   );
 }

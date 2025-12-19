@@ -1,15 +1,16 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Quicksand, Inter_Tight } from "next/font/google";
 import "./globals.css";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
+const quicksand = Quicksand({
+  weight: ["400", "500", "600", "700"],
   subsets: ["latin"],
+  variable: "--font-quicksand",
 });
 
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
+const interTight = Inter_Tight({
   subsets: ["latin"],
+  variable: "--font-inter-tight",
 });
 
 export const metadata: Metadata = {
@@ -24,7 +25,7 @@ export const metadata: Metadata = {
     description: "News, simplified.",
     images: [
       {
-        url: "/basic-breakdown-og.png", // <-- relative path in /public
+        url: "/basic-breakdown-og.png",
         width: 1200,
         height: 630,
         alt: "Basic Breakdown — clean news explainer layout",
@@ -35,22 +36,21 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Basic Breakdown — News that actually makes sense",
     description: "News, simplified.",
-    images: ["/basic-breakdown-og.png"], // <-- relative too
+    images: ["/basic-breakdown-og.png"],
   },
 };
 
 export default function RootLayout({
   children,
-}: Readonly<{
+}: {
   children: React.ReactNode;
-}>) {
+}) {
   return (
-    <html lang="en">
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-      >
-        {children}
-      </body>
+    <html
+      lang="en"
+      className={`${quicksand.variable} ${interTight.variable}`}
+    >
+      <body className="antialiased">{children}</body>
     </html>
   );
 }
