@@ -29,7 +29,6 @@ function cleanLine(line: string): string {
   return s.trim();
 }
 
-
 function isBulletSection(text: string): boolean {
   return text.split("\n").some((line) => /^\s*[-•]+/.test(line));
 }
@@ -54,14 +53,14 @@ export default async function PostPage({ params }: PostPageProps) {
       <div className="mx-auto min-h-screen max-w-5xl border-x border-zinc-300 bg-zinc-50 shadow-md">
         {/* Same header as homepage */}
         <header className="flex items-center justify-between px-4 py-5 sm:px-8">
-          <div className="leading-tight">
+          <Link href="/" className="leading-tight hover:opacity-90 transition">
             <div className="text-2xl font-bold tracking-[0.25em] text-zinc-900">
               BASIC
             </div>
             <div className="text-2xl font-bold tracking-[0.25em] text-zinc-900">
               BREAKDOWN
             </div>
-          </div>
+          </Link>
 
           <nav className="flex items-center gap-6 text-xs font-medium tracking-[0.18em] text-zinc-700">
             <Link href="/#archive" className="hover:text-zinc-900">
@@ -136,11 +135,9 @@ export default async function PostPage({ params }: PostPageProps) {
                   </ul>
                 ) : (
                   <div className="mt-3 space-y-4 text-zinc-700">
-                    {section.body
-                      .split("\n")
-                      .map((paragraph, idx) => (
-                        <p key={idx}>{paragraph}</p>
-                      ))}
+                    {section.body.split("\n").map((paragraph, idx) => (
+                      <p key={idx}>{paragraph}</p>
+                    ))}
                   </div>
                 )}
               </section>

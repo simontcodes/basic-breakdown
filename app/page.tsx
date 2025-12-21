@@ -1,7 +1,6 @@
 import Link from "next/link";
 import { getAllIssues, Issue } from "@/lib/issues";
 
-
 export default async function HomePage() {
   const posts = await getAllIssues();
   const featured = posts[0];
@@ -11,20 +10,20 @@ export default async function HomePage() {
     <div className="min-h-screen bg-zinc-100 text-zinc-900">
       <div className="mx-auto min-h-screen max-w-5xl border-x border-zinc-300 bg-zinc-50 shadow-md">
         <header className="flex items-center justify-between px-4 py-5 sm:px-8">
-          <div className="leading-tight">
-            <div className="text-2xl  font-bold tracking-[0.25em] text-zinc-900">
+          <Link href="/" className="leading-tight hover:opacity-90 transition">
+            <div className="text-2xl font-bold tracking-[0.25em] text-zinc-900">
               BASIC
             </div>
-            <div className=" text-2xl font-bold tracking-[0.25em] text-zinc-900">
+            <div className="text-2xl font-bold tracking-[0.25em] text-zinc-900">
               BREAKDOWN
             </div>
-          </div>
+          </Link>
 
           <nav className="flex items-center gap-6 text-xs font-medium tracking-[0.18em] text-zinc-700">
-            <Link href="#archive" className="hover:text-zinc-900">
+            <Link href="/#archive" className="hover:text-zinc-900">
               ARCHIVE
             </Link>
-            <Link href="#about" className="hover:text-zinc-900">
+            <Link href="/#about" className="hover:text-zinc-900">
               ABOUT
             </Link>
           </nav>
