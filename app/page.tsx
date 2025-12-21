@@ -1,17 +1,15 @@
-// app/page.tsx
 import Link from "next/link";
-import { getAllPosts, type Post } from "@/lib/posts";
+import { getAllIssues, Issue } from "@/lib/issues";
 
-export default function HomePage() {
-  const posts = getAllPosts();
+
+export default async function HomePage() {
+  const posts = await getAllIssues();
   const featured = posts[0];
   const recent = posts.slice(1);
 
   return (
     <div className="min-h-screen bg-zinc-100 text-zinc-900">
-      {/* Frame border to mimic mockup */}
       <div className="mx-auto min-h-screen max-w-5xl border-x border-zinc-300 bg-zinc-50 shadow-md">
-        {/* Header */}
         <header className="flex items-center justify-between px-4 py-5 sm:px-8">
           <div className="leading-tight">
             <div className="text-2xl  font-bold tracking-[0.25em] text-zinc-900">
@@ -33,7 +31,6 @@ export default function HomePage() {
         </header>
 
         <main className="px-4 pb-16 pt-4 sm:px-8 sm:pb-20">
-          {/* Hero */}
           <section className="flex flex-col items-center text-center">
             <h1 className="max-w-3xl text-3xl font-semibold leading-tight tracking-tight text-zinc-900 sm:text-4xl md:text-5xl">
               NEWS, SIMPLIFIED.
@@ -61,15 +58,13 @@ export default function HomePage() {
             </p>
           </section>
 
-          {/* Latest breakdowns */}
           <section id="archive" className="mt-12 sm:mt-16">
             <h2 className="text-xs font-semibold tracking-[0.22em] text-zinc-700">
               LATEST BREAKDOWNS
             </h2>
 
-            {/* Grid of cards */}
             <div className="mt-4 grid gap-4 sm:grid-cols-2 md:grid-cols-3">
-              {posts.map((post: Post) => (
+              {posts.map((post: Issue) => (
                 <article
                   key={post.slug}
                   className="flex h-full flex-col rounded-2xl bg-white p-4 text-left shadow-sm ring-1 ring-zinc-200"
@@ -98,8 +93,7 @@ export default function HomePage() {
                       href={`/posts/${post.slug}`}
                       className="inline-flex items-center gap-1 text-[11px] font-medium text-zinc-900"
                     >
-                      Read
-                      <span aria-hidden="true">→</span>
+                      Read <span aria-hidden="true">→</span>
                     </Link>
                   </div>
                 </article>
@@ -107,7 +101,6 @@ export default function HomePage() {
             </div>
           </section>
 
-          {/* About blurb at bottom */}
           <section
             id="about"
             className="mt-16 border-t border-zinc-200 pt-6 text-left text-sm text-zinc-700"
