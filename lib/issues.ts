@@ -1,5 +1,3 @@
-// lib/issues.ts
-
 export type Issue = {
   slug: string;
   title: string;

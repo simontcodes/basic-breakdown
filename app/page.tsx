@@ -1,6 +1,5 @@
 import Link from "next/link";
-import { getAllIssues, Issue } from "@/lib/issues";
-
+import { getAllIssues, type Issue } from "@/lib/issues";
 
 export default async function HomePage() {
   const posts = await getAllIssues();
@@ -9,22 +8,22 @@ export default async function HomePage() {
 
   return (
     <div className="min-h-screen bg-zinc-100 text-zinc-900">
-      <div className="mx-auto min-h-screen max-w-5xl border-x border-zinc-300 bg-zinc-50 shadow-md">
+      <div className="mx-auto flex min-h-screen max-w-5xl flex-col border-x border-zinc-300 bg-zinc-50 shadow-md">
         <header className="flex items-center justify-between px-4 py-5 sm:px-8">
-          <div className="leading-tight">
-            <div className="text-2xl  font-bold tracking-[0.25em] text-zinc-900">
+          <Link href="/" className="leading-tight hover:opacity-90 transition">
+            <div className="text-2xl font-bold tracking-[0.25em] text-zinc-900">
               BASIC
             </div>
-            <div className=" text-2xl font-bold tracking-[0.25em] text-zinc-900">
+            <div className="text-2xl font-bold tracking-[0.25em] text-zinc-900">
               BREAKDOWN
             </div>
-          </div>
+          </Link>
 
           <nav className="flex items-center gap-6 text-xs font-medium tracking-[0.18em] text-zinc-700">
-            <Link href="#archive" className="hover:text-zinc-900">
+            <Link href="/#archive" className="hover:text-zinc-900">
               ARCHIVE
             </Link>
-            <Link href="#about" className="hover:text-zinc-900">
+            <Link href="/#about" className="hover:text-zinc-900">
               ABOUT
             </Link>
           </nav>
@@ -100,19 +99,19 @@ export default async function HomePage() {
               ))}
             </div>
           </section>
-
-          <section
-            id="about"
-            className="mt-16 border-t border-zinc-200 pt-6 text-left text-sm text-zinc-700"
-          >
-            <p className="max-w-2xl">
-              Basic Breakdown is a short-form newsletter that explains one
-              important story at a time—what happened, why it matters, and what
-              to watch next. Clean, context-rich, and designed to fit into your
-              day without taking it over.
-            </p>
-          </section>
         </main>
+
+        <footer
+          id="about"
+          className="mt-auto border-t border-zinc-200 px-4 py-6 text-left text-sm text-zinc-700 sm:px-8"
+        >
+          <p className="max-w-2xl">
+            Basic Breakdown is a short-form newsletter that explains one
+            important story at a time—what happened, why it matters, and what
+            to watch next. Clean, context-rich, and designed to fit into your
+            day without taking it over.
+          </p>
+        </footer>
       </div>
     </div>
   );
