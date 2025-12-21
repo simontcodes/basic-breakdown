@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { getAllIssues, type Issue } from "@/lib/issues";
+import { getAllIssues, Issue } from "@/lib/issues";
 
 export default async function HomePage() {
   const posts = await getAllIssues();
