@@ -3,8 +3,9 @@ import { getAllIssues, Issue } from "@/lib/issues";
 
 export default async function HomePage() {
   const posts = await getAllIssues();
+
   const featured = posts[0];
-  const recent = posts.slice(1);
+  const recent = posts.slice(1, 10); // ✅ show only 9 more (total 10 including featured)
 
   return (
     <div className="min-h-screen bg-zinc-100 text-zinc-900">
@@ -20,7 +21,7 @@ export default async function HomePage() {
           </Link>
 
           <nav className="flex items-center gap-6 text-xs font-medium tracking-[0.18em] text-zinc-700">
-            <Link href="/#archive" className="hover:text-zinc-900">
+            <Link href="/archive" className="hover:text-zinc-900">
               ARCHIVE
             </Link>
             <Link href="/#about" className="hover:text-zinc-900">
@@ -62,8 +63,51 @@ export default async function HomePage() {
               LATEST BREAKDOWNS
             </h2>
 
+            {/* ✅ Featured */}
+            {featured && (
+              <article className="mt-4 rounded-2xl bg-white p-6 shadow-sm ring-1 ring-zinc-200">
+                <div className="flex flex-wrap items-center gap-2 text-[10px] font-semibold uppercase tracking-[0.2em] text-zinc-500">
+                  <span className="rounded-full bg-zinc-900 px-2 py-1 text-[10px] tracking-[0.18em] text-white">
+                    FEATURED
+                  </span>
+
+                  <span>
+                    {featured.topic.toUpperCase()} ·{" "}
+                    {new Date(featured.date).toLocaleDateString("en-US", {
+                      month: "short",
+                      day: "numeric",
+                    })}
+                  </span>
+
+                  <span className="ml-auto text-[11px] normal-case tracking-normal text-zinc-500">
+                    {featured.minutes} min read
+                  </span>
+                </div>
+
+                <Link href={`/posts/${featured.slug}`}>
+                  <h3 className="mt-3 text-2xl font-semibold leading-snug text-zinc-900 sm:text-3xl">
+                    {featured.title}
+                  </h3>
+                </Link>
+
+                <p className="mt-3 max-w-3xl text-sm text-zinc-600">
+                  {featured.summary}
+                </p>
+
+                <div className="mt-5">
+                  <Link
+                    href={`/posts/${featured.slug}`}
+                    className="inline-flex items-center gap-2 rounded-full bg-zinc-900 px-5 py-2 text-xs font-semibold uppercase tracking-[0.18em] text-white hover:bg-zinc-800"
+                  >
+                    Read now <span aria-hidden="true">→</span>
+                  </Link>
+                </div>
+              </article>
+            )}
+
+            {/* ✅ Recent grid (limited) */}
             <div className="mt-4 grid gap-4 sm:grid-cols-2 md:grid-cols-3">
-              {posts.map((post: Issue) => (
+              {recent.map((post: Issue) => (
                 <article
                   key={post.slug}
                   className="flex h-full flex-col rounded-2xl bg-white p-4 text-left shadow-sm ring-1 ring-zinc-200"
@@ -97,6 +141,15 @@ export default async function HomePage() {
                   </div>
                 </article>
               ))}
+            </div>
+
+            <div className="mt-6">
+              <Link
+                href="/archive"
+                className="text-xs font-semibold uppercase tracking-[0.18em] text-zinc-900 hover:underline"
+              >
+                View full archive →
+              </Link>
             </div>
           </section>
 

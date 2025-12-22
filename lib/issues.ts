@@ -1,5 +1,3 @@
-// lib/issues.ts
-
 export type Issue = {
   slug: string;
   title: string;
@@ -20,6 +18,7 @@ type BackendIssue = {
   whatsGoingOn?: string | null;
   whyItMatters?: string | null;
   readMore?: string | null;
+  category?: string | null;
   publishedAt?: string | null; // may come as ISO string
   createdAt?: string;          // ISO string
 };
@@ -59,6 +58,7 @@ function toIssueCard(item: BackendIssue): Issue {
     item.whatsGoingOn,
     item.whyItMatters,
     item.readMore,
+    item.category,
   ]
     .filter((v): v is string => typeof v === "string" && v.trim().length > 0)
     .join(" ");
@@ -67,7 +67,7 @@ function toIssueCard(item: BackendIssue): Issue {
     slug: item.slug,
     title: item.title,
     summary,
-    topic: "NEWS", // until you store a real topic field
+    topic: item.category ?? "NEWS",
     date,
     minutes: estimateMinutes(fullText || summary),
   };
@@ -110,7 +110,6 @@ function extractArray(payload: unknown): unknown[] {
 
 export async function getAllIssues(): Promise<Issue[]> {
   const res = await fetch(`${API_URL}/issues`, { cache: "no-store" });
-
   if (!res.ok) {
     throw new Error(`Failed to fetch issues: ${res.status} ${res.statusText}`);
   }
