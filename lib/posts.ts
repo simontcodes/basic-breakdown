@@ -1,13 +1,12 @@
-// lib/posts.ts
 
-export type Topic = 'world' | 'tech' | 'money' | 'society';
 
 export type Post = {
   slug: string;
   title: string;
-  topic: Topic;
+  topic: string;
   summary: string;
   minutes: number;
+  readMore?: string;
   date: string; // ISO date string
   bullets: string[];
   sections: {

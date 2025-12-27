@@ -1,12 +1,11 @@
-// lib/issues-detail.ts
-
 export type IssueDetail = {
   slug: string;
   title: string;
-  topic: string;
+  category: string;
   minutes: number;
   date: string; // ISO
   bullets: string[];
+  readMore?: string;
   sections: { heading: string; body: string }[];
 };
 
@@ -28,6 +27,7 @@ type BackendIssue = {
   readMore?: string | null;
   publishedAt?: string | null;
   createdAt?: string;
+  category?: string | null;
 };
 
 function estimateMinutes(text: string): number {
@@ -100,7 +100,7 @@ function toDetail(issue: BackendIssue): IssueDetail {
   return {
     slug: issue.slug,
     title: issue.title,
-    topic: "NEWS",
+    category: issue.category ?? "NEWS",
     date,
     minutes: estimateMinutes(fullText || issue.previewText || issue.title),
     bullets: makeBullets(issue),
@@ -148,6 +148,7 @@ export async function getIssueBySlug(slug: string): Promise<IssueDetail | null> 
   if (!res.ok) throw new Error(`Failed to fetch issue ${slug}: ${res.status}`);
 
   const json: unknown = await res.json();
+  console.log("Fetched JSON for issue:", json);
   const unwrapped = unwrapData(json);
 
   if (!looksLikeBackendIssue(unwrapped)) return null;

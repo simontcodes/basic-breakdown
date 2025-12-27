@@ -3,12 +3,11 @@ export type Issue = {
   title: string;
   summary: string;
   topic: string;
-  date: string;    // ISO string
-  minutes: number; // estimated reading time
+  date: string;
+  minutes: number;
+  readMore?: string | null; // estimated reading time
 };
 
-// This is roughly your Prisma Issue model shape coming from the backend.
-// (It may contain more fields; we only care about these.)
 type BackendIssue = {
   slug: string;
   title: string;
@@ -19,19 +18,9 @@ type BackendIssue = {
   whyItMatters?: string | null;
   readMore?: string | null;
   category?: string | null;
-  publishedAt?: string | null; // may come as ISO string
-  createdAt?: string;          // ISO string
+  publishedAt?: string | null;
+  createdAt?: string; 
 };
-
-type ApiResponse =
-  | Issue[]
-  | BackendIssue[]
-  | { data: Issue[] }
-  | { data: BackendIssue[] }
-  | { issues: Issue[] }
-  | { issues: BackendIssue[] }
-  | { data: { issues: Issue[] } }
-  | { data: { issues: BackendIssue[] } };
 
 const API_URL = process.env.NEXT_PUBLIC_API_URL;
 if (!API_URL) {
